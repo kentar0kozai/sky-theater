@@ -1,0 +1,1 @@
+{"days":7,"observer":{"alt_m":40,"lat":34.803,"lon":135.768,"name":"Kyotanabe, Kyoto, Japan","tz_name":"Asia/Tokyo"},"thresholds":{"cloud_cancel_pct":60,"min_peak_el":15,"min_visible_el":10,"sun_el_max":-6},"tle_url":"https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE","voicevox_speaker":3,"voicevox_url":"http://127.0.0.1:50021"}
