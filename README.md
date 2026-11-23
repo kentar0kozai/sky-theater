@@ -38,7 +38,7 @@ python -m skytheater.run --config config.json --out docs --audio
 
 ## ずっと運用する形
 
-- `.github/workflows/update.yml` が毎日、最新の軌道データで番組表を再計算し、`docs/` にコミットします
+- GitHub Actions のワークフローが毎日、最新の軌道データで番組表を再計算し、`docs/` にコミットします。有効にするには、リポジトリ直下の `update.yml.example` を `.github/workflows/update.yml` として置いてください（GitHubの画面から新規ファイルとして作成できます）
 - GitHub Pages を `docs/` フォルダで有効にすると、時計はそこから番組表と音声を取得できます
 - 軌道データ（TLE）は数日で古くなるため、この日次更新が前提です
 
