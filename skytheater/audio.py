@@ -29,7 +29,7 @@ def generate_audio(program, out_dir, engine_url="http://127.0.0.1:50021", speake
     for show in program["shows"]:
         if not show["held"]:
             continue
-        d = os.path.join(out_dir, "audio", show["date"])
+        d = os.path.join(out_dir, show["audio_base"])
         os.makedirs(d, exist_ok=True)
         for ev in show["events"]:
             path = os.path.join(d, ev["kind"] + ".wav")

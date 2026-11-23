@@ -24,7 +24,7 @@
 
 static const char* WIFI_SSID = "YOUR_SSID";
 static const char* WIFI_PASS = "YOUR_PASS";
-static const char* PROGRAM_BASE_URL = "http://YOUR_SERVER/sky-theater";
+static const char* PROGRAM_BASE_URL = "https://kentar0kozai.github.io/sky-theater";
 
 struct Event {
   time_t at;
@@ -77,11 +77,9 @@ static bool fetchProgram() {
       e.at = mktime(&tmv);
       e.kind = ev["kind"].as<String>();
       e.vibrate = ev["vibrate"].as<bool>();
-      e.wavPath = "/audio/" + date + "/" + e.kind + ".wav";
-      String url = String(PROGRAM_BASE_URL) + "/audio/" + date + "/" + e.kind + ".wav";
+      e.wavPath = "/" + ev["audio"].as<String>();
+      String url = String(PROGRAM_BASE_URL) + "/" + ev["audio"].as<String>();
       if (!LittleFS.exists(e.wavPath)) {
-        LittleFS.mkdir("/audio");
-        LittleFS.mkdir("/audio/" + date);
         downloadToFile(url, e.wavPath);
       }
       g_eventCount++;

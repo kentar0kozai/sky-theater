@@ -43,6 +43,7 @@ def build_show(p, cloud_pct, cloud_cancel_pct, tz):
     end = datetime.fromisoformat(f"{d}T{p['end_local']}").replace(tzinfo=tz)
     held = cloud_pct is None or cloud_pct <= cloud_cancel_pct
     el = p["peak_el"]
+    audio_base = f"audio/{d}/{start:%H%M}"
     events = [
         {"time": (start - timedelta(minutes=30)).isoformat(), "kind": "announce",
          "vibrate": False,
@@ -65,7 +66,10 @@ def build_show(p, cloud_pct, cloud_cancel_pct, tz):
     else:
         events.append({"time": end.isoformat(), "kind": "end", "vibrate": False,
                        "say": "終演なのだ。観察スタンプを1つ押したのだ。おつかれさまなのだ。"})
-    return {"date": d, "held": held, "cloud_pct": cloud_pct, "pass": p, "events": events}
+    for ev in events:
+        ev["audio"] = f"{audio_base}/{ev['kind']}.wav"
+    return {"date": d, "held": held, "cloud_pct": cloud_pct, "pass": p,
+            "audio_base": audio_base, "events": events}
 
 
 def build_program(cfg, observer):
